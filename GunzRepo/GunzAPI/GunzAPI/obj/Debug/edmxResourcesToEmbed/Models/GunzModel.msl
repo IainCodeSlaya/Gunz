@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GunzModelStoreContainer" CdmEntityContainer="GunzEntities">
+    <EntitySetMapping Name="Guns">
+      <EntityTypeMapping TypeName="GunzModel.Gun">
+        <MappingFragment StoreEntitySet="Gun">
+          <ScalarProperty Name="GunID" ColumnName="GunID" />
+          <ScalarProperty Name="GunName" ColumnName="GunName" />
+          <ScalarProperty Name="GunDescription" ColumnName="GunDescription" />
+          <ScalarProperty Name="GunTypeID" ColumnName="GunTypeID" />
+          <ScalarProperty Name="GunAutomaticID" ColumnName="GunAutomaticID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GunAutomatics">
+      <EntityTypeMapping TypeName="GunzModel.GunAutomatic">
+        <MappingFragment StoreEntitySet="GunAutomatic">
+          <ScalarProperty Name="GunAutomaticID" ColumnName="GunAutomaticID" />
+          <ScalarProperty Name="GunAutoDesc" ColumnName="GunAutoDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GunTypes">
+      <EntityTypeMapping TypeName="GunzModel.GunType">
+        <MappingFragment StoreEntitySet="GunType">
+          <ScalarProperty Name="GunTypeID" ColumnName="GunTypeID" />
+          <ScalarProperty Name="GunTypeName" ColumnName="GunTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GunUsers">
+      <EntityTypeMapping TypeName="GunzModel.GunUser">
+        <MappingFragment StoreEntitySet="GunUser">
+          <ScalarProperty Name="GunUserID" ColumnName="GunUserID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="GunID" ColumnName="GunID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="GunzModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="79f112c0993b41778f70c8fc6bb242d6" Name="Diagram1">
+        <EntityTypeShape EntityType="GunzModel.Gun" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GunzModel.GunAutomatic" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GunzModel.GunType" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GunzModel.GunUser" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GunzModel.User" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="GunzModel.FK__Gun__GunAutomati__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="GunzModel.FK__Gun__GunTypeID__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="GunzModel.FK__GunUser__GunID__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="GunzModel.FK__GunUser__UserID__412EB0B6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

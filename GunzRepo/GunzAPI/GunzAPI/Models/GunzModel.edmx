@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GunzModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Gun">
+          <Key>
+            <PropertyRef Name="GunID" />
+          </Key>
+          <Property Name="GunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GunName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GunDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GunTypeID" Type="int" />
+          <Property Name="GunAutomaticID" Type="int" />
+        </EntityType>
+        <EntityType Name="GunAutomatic">
+          <Key>
+            <PropertyRef Name="GunAutomaticID" />
+          </Key>
+          <Property Name="GunAutomaticID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GunAutoDesc" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="GunType">
+          <Key>
+            <PropertyRef Name="GunTypeID" />
+          </Key>
+          <Property Name="GunTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GunTypeName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="GunUser">
+          <Key>
+            <PropertyRef Name="GunUserID" />
+          </Key>
+          <Property Name="GunUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="GunID" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__Gun__GunAutomati__3E52440B">
+          <End Role="GunAutomatic" Type="Self.GunAutomatic" Multiplicity="0..1" />
+          <End Role="Gun" Type="Self.Gun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GunAutomatic">
+              <PropertyRef Name="GunAutomaticID" />
+            </Principal>
+            <Dependent Role="Gun">
+              <PropertyRef Name="GunAutomaticID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gun__GunTypeID__3D5E1FD2">
+          <End Role="GunType" Type="Self.GunType" Multiplicity="0..1" />
+          <End Role="Gun" Type="Self.Gun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GunType">
+              <PropertyRef Name="GunTypeID" />
+            </Principal>
+            <Dependent Role="Gun">
+              <PropertyRef Name="GunTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GunUser__GunID__4222D4EF">
+          <End Role="Gun" Type="Self.Gun" Multiplicity="0..1" />
+          <End Role="GunUser" Type="Self.GunUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gun">
+              <PropertyRef Name="GunID" />
+            </Principal>
+            <Dependent Role="GunUser">
+              <PropertyRef Name="GunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GunUser__UserID__412EB0B6">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="GunUser" Type="Self.GunUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="GunUser">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GunzModelStoreContainer">
+          <EntitySet Name="Gun" EntityType="Self.Gun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GunAutomatic" EntityType="Self.GunAutomatic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GunType" EntityType="Self.GunType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GunUser" EntityType="Self.GunUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Gun__GunAutomati__3E52440B" Association="Self.FK__Gun__GunAutomati__3E52440B">
+            <End Role="GunAutomatic" EntitySet="GunAutomatic" />
+            <End Role="Gun" EntitySet="Gun" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gun__GunTypeID__3D5E1FD2" Association="Self.FK__Gun__GunTypeID__3D5E1FD2">
+            <End Role="GunType" EntitySet="GunType" />
+            <End Role="Gun" EntitySet="Gun" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GunUser__GunID__4222D4EF" Association="Self.FK__GunUser__GunID__4222D4EF">
+            <End Role="Gun" EntitySet="Gun" />
+            <End Role="GunUser" EntitySet="GunUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GunUser__UserID__412EB0B6" Association="Self.FK__GunUser__UserID__412EB0B6">
+            <End Role="User" EntitySet="User" />
+            <End Role="GunUser" EntitySet="GunUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GunzModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gun">
+          <Key>
+            <PropertyRef Name="GunID" />
+          </Key>
+          <Property Name="GunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GunName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GunDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GunTypeID" Type="Int32" />
+          <Property Name="GunAutomaticID" Type="Int32" />
+          <NavigationProperty Name="GunAutomatic" Relationship="Self.FK__Gun__GunAutomati__3E52440B" FromRole="Gun" ToRole="GunAutomatic" />
+          <NavigationProperty Name="GunType" Relationship="Self.FK__Gun__GunTypeID__3D5E1FD2" FromRole="Gun" ToRole="GunType" />
+          <NavigationProperty Name="GunUsers" Relationship="Self.FK__GunUser__GunID__4222D4EF" FromRole="Gun" ToRole="GunUser" />
+        </EntityType>
+        <EntityType Name="GunAutomatic">
+          <Key>
+            <PropertyRef Name="GunAutomaticID" />
+          </Key>
+          <Property Name="GunAutomaticID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GunAutoDesc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Guns" Relationship="Self.FK__Gun__GunAutomati__3E52440B" FromRole="GunAutomatic" ToRole="Gun" />
+        </EntityType>
+        <EntityType Name="GunType">
+          <Key>
+            <PropertyRef Name="GunTypeID" />
+          </Key>
+          <Property Name="GunTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GunTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Guns" Relationship="Self.FK__Gun__GunTypeID__3D5E1FD2" FromRole="GunType" ToRole="Gun" />
+        </EntityType>
+        <EntityType Name="GunUser">
+          <Key>
+            <PropertyRef Name="GunUserID" />
+          </Key>
+          <Property Name="GunUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="GunID" Type="Int32" />
+          <NavigationProperty Name="Gun" Relationship="Self.FK__GunUser__GunID__4222D4EF" FromRole="GunUser" ToRole="Gun" />
+          <NavigationProperty Name="User" Relationship="Self.FK__GunUser__UserID__412EB0B6" FromRole="GunUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GunUsers" Relationship="Self.FK__GunUser__UserID__412EB0B6" FromRole="User" ToRole="GunUser" />
+        </EntityType>
+        <Association Name="FK__Gun__GunAutomati__3E52440B">
+          <End Role="GunAutomatic" Type="Self.GunAutomatic" Multiplicity="0..1" />
+          <End Role="Gun" Type="Self.Gun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GunAutomatic">
+              <PropertyRef Name="GunAutomaticID" />
+            </Principal>
+            <Dependent Role="Gun">
+              <PropertyRef Name="GunAutomaticID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gun__GunTypeID__3D5E1FD2">
+          <End Role="GunType" Type="Self.GunType" Multiplicity="0..1" />
+          <End Role="Gun" Type="Self.Gun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GunType">
+              <PropertyRef Name="GunTypeID" />
+            </Principal>
+            <Dependent Role="Gun">
+              <PropertyRef Name="GunTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GunUser__GunID__4222D4EF">
+          <End Role="Gun" Type="Self.Gun" Multiplicity="0..1" />
+          <End Role="GunUser" Type="Self.GunUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gun">
+              <PropertyRef Name="GunID" />
+            </Principal>
+            <Dependent Role="GunUser">
+              <PropertyRef Name="GunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GunUser__UserID__412EB0B6">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="GunUser" Type="Self.GunUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="GunUser">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GunzEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Guns" EntityType="Self.Gun" />
+          <EntitySet Name="GunAutomatics" EntityType="Self.GunAutomatic" />
+          <EntitySet Name="GunTypes" EntityType="Self.GunType" />
+          <EntitySet Name="GunUsers" EntityType="Self.GunUser" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Gun__GunAutomati__3E52440B" Association="Self.FK__Gun__GunAutomati__3E52440B">
+            <End Role="GunAutomatic" EntitySet="GunAutomatics" />
+            <End Role="Gun" EntitySet="Guns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gun__GunTypeID__3D5E1FD2" Association="Self.FK__Gun__GunTypeID__3D5E1FD2">
+            <End Role="GunType" EntitySet="GunTypes" />
+            <End Role="Gun" EntitySet="Guns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GunUser__GunID__4222D4EF" Association="Self.FK__GunUser__GunID__4222D4EF">
+            <End Role="Gun" EntitySet="Guns" />
+            <End Role="GunUser" EntitySet="GunUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GunUser__UserID__412EB0B6" Association="Self.FK__GunUser__UserID__412EB0B6">
+            <End Role="User" EntitySet="Users" />
+            <End Role="GunUser" EntitySet="GunUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GunzModelStoreContainer" CdmEntityContainer="GunzEntities">
+          <EntitySetMapping Name="Guns">
+            <EntityTypeMapping TypeName="GunzModel.Gun">
+              <MappingFragment StoreEntitySet="Gun">
+                <ScalarProperty Name="GunID" ColumnName="GunID" />
+                <ScalarProperty Name="GunName" ColumnName="GunName" />
+                <ScalarProperty Name="GunDescription" ColumnName="GunDescription" />
+                <ScalarProperty Name="GunTypeID" ColumnName="GunTypeID" />
+                <ScalarProperty Name="GunAutomaticID" ColumnName="GunAutomaticID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GunAutomatics">
+            <EntityTypeMapping TypeName="GunzModel.GunAutomatic">
+              <MappingFragment StoreEntitySet="GunAutomatic">
+                <ScalarProperty Name="GunAutomaticID" ColumnName="GunAutomaticID" />
+                <ScalarProperty Name="GunAutoDesc" ColumnName="GunAutoDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GunTypes">
+            <EntityTypeMapping TypeName="GunzModel.GunType">
+              <MappingFragment StoreEntitySet="GunType">
+                <ScalarProperty Name="GunTypeID" ColumnName="GunTypeID" />
+                <ScalarProperty Name="GunTypeName" ColumnName="GunTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GunUsers">
+            <EntityTypeMapping TypeName="GunzModel.GunUser">
+              <MappingFragment StoreEntitySet="GunUser">
+                <ScalarProperty Name="GunUserID" ColumnName="GunUserID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GunID" ColumnName="GunID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GunzModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
